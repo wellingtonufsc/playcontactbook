@@ -7,7 +7,7 @@ Essa agenda foi desenvolvida com play framework 2.6 com hibernate JPA e MySQL. U
 - Inserir, editar e apagar contatos na agenda (foto, nome, telefone, idade, data de nascimento, email)
 - Criar grupos (Ex: Amigos, familiáres, Futebol, Condomínio)
 - Lista de todos os contatos e contatos por grupo
-- Possui uma API não finzalizada para integração com outros sistemas [ex: GET /v1/books - Listas todos os contatos cadastrados (contact books)]
+- Possui uma API, não finzalizada para integração com outros sistemas [ex: GET /v1/books - Listas todos os contatos cadastrados (contact books)]
 
 Melhorias importantes a ser feitas: verificações dos formulários, ajustes visuais e busca. 
 
