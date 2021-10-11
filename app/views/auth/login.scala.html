@@ -1,0 +1,41 @@
+@(registerForm : Form[User])
+@import helper._
+
+@layout("Login"){
+
+<center><div>
+    <div class="col-md-5">
+        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <p>Registre-se para inserir contatos na agenda</p>
+        <br>
+
+        @helper.form(action = routes.AuthController.auth()){
+
+        @CSRF.formField
+        <form>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" name="email">
+                <label for="floatingInput">E-mail</label>
+            </div>
+            <br>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword"  name="password" >
+                <label for="floatingPassword">Senha</label>
+            </div>
+            <br>
+            <div class="form-group">
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+            </div>
+            }
+        </form>
+        <center><div><p>ou</p></div></center>
+        <div>
+            <a href="@routes.AuthController.register()"><button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">Registre-se</button></a>
+        </div>
+    </div>
+
+
+        </div>
+</center>
+
+          }

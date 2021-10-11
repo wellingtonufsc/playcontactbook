@@ -1,0 +1,46 @@
+@import helper._
+
+@(bookFrom : Form[Book],authors:List[User],authorEmail:String,tags:List[Tag],booktags:List[Tag])
+
+    @CSRF.formField
+
+    @if(authorEmail != null){
+        <div class="form-group">
+            <img width="100px" class="img img-responsive" src="/assets/uploads/@bookFrom.get.photo">
+        </div>
+    }
+
+    @helper.inputText(bookFrom("name"),'class -> "form-control")
+    @helper.inputText(bookFrom("phone"),'class -> "form-control")
+    @helper.inputText(bookFrom("email"),'class -> "form-control")
+    @helper.inputText(bookFrom("age"),'class -> "form-control")
+    @helper.inputText(bookFrom("birthdate"),'class -> "form-control")
+
+    <div class="form-group">
+        <label for="photo">Foto do contato</label>
+        <input type="file" name="photo">
+    </div>
+
+    <div class="form-group">
+        <label for="author_email">Registrado por:</label>
+        <select class="form-control" name="author_email" id="author_email">
+            @for(author <- authors){
+                <option value="@author.email"
+                    @if(authorEmail!=null){
+                        @if(authorEmail.equals(author.email)){selected}
+                    }
+                >@author.name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="tags-selection">Grupo (Ex. Família, Amigos próximo, Futebol...)</label>
+        <select class="form-control" multiple="multiple" name="tagIds[]" id="tags-selection">
+            @for(tag <- tags){
+                <option value="@tag.id" @if(booktags.contains(tag)){selected="selected"}>@tag.name</option>
+            }
+        </select>
+
+    </div>
+

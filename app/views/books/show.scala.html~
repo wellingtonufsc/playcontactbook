@@ -1,0 +1,29 @@
+@import controllers.Auth.Secured
+@(book: Book)
+@import helper._
+
+@layout(book.name){
+
+    <h2>@book.name</h2>
+
+    <p>Telefone : @book.phone </p>
+    <p>E-mail : @book.email </p>
+    <p>Idade : @book.age </p>
+    <p>Data de nascimento : @book.birthdate </p>
+
+    <p>Author : @book.author.name</p>
+
+    @if(Secured.CHECK()){
+
+        <a class="btn btn-primary" href="@routes.BooksController.edit(book.id)">Editar</a>
+
+        <button class="btn btn-danger" onclick="sendDeleteRequest(
+                '@routes.BooksController.destroy(book.id)',
+                '@routes.BooksController.index()',
+                '@CSRF.getToken.value'
+        )">Apagar</button>
+    }
+
+    <p>@Html(book.details)</p>
+
+}

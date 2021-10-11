@@ -1,0 +1,82 @@
+@import controllers.Auth.Secured
+
+@(title : String,header:Html = Html(""),footer:Html = Html(""))(body: Html)
+<html>
+<head>
+    <title>@title</title>
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/bootstrap.min.css")">
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/style.css")">
+
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+
+    <link href="css/navbar.css" rel="stylesheet">
+
+    @header
+
+</head>
+<body>
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <img src="@routes.Assets.versioned("images/contacts.png")" alt="Agenda de contatos" width="50" style="margin-right: 10px;">
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                @if(Secured.CHECK()){
+                <li><a href="@routes.BooksController.index()" class="nav-link px-2 link-secondary">Lista de contatos</a></li>
+                <li><a href="@routes.BooksController.create()" class="nav-link px-2 link-dark">Adicionar contato</a></li>
+                <li><a href="@routes.TagsController.index()" class="nav-link px-2 link-dark">Grupos</a></li>
+                }
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control" placeholder="Pesquisa..." aria-label="Search">
+            </form>
+
+            <div class="dropdown text-end">
+                @if(Secured.CHECK()){
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    @Secured.USER().name
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="@routes.AuthController.logout()">Sair</a></li>
+                </ul>
+                }
+                @if(!Secured.CHECK()){
+                <a href="@routes.AuthController.login()"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
+                <a href="@routes.AuthController.register()"><button type="button" class="btn btn-primary">Registre-se</button></a>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</header>
+
+
+
+
+<div class="container">
+
+    @for(key <- Array("danger","info","success","warning")){
+    @if(flash.containsKey(key)){
+    <div class="alert alert-@key">
+        @flash.get(key)
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"><i class="glyphicon glyphicon-remove"></i></a>
+    </div>
+    }
+    }
+
+    @body
+</div>
+
+<script src="@routes.Assets.versioned("js/jquery-3.2.1.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("js/bootstrap.bundle.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("js/custom.js")" type="text/javascript"></script>
+
+@footer
+
+</body>
+</html>

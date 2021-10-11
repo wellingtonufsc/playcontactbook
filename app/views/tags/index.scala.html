@@ -1,0 +1,62 @@
+@import helper._
+@(tagForm : Form[Tag],tags:List[Tag])
+
+@layout("Tags"){
+
+    <div class="row">
+
+        <div class="col-sm-8">
+            <h1 class="h3 mb-3 fw-normal">Grupos cadastrados</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><h6 class="mb-0">Nome do grupo</h6></th>
+                    <th><h6 class="mb-0">Descrição</h6></th>
+                    <th><h6 class="mb-0">Ação</h6></th>
+                </tr>
+                </thead>
+                <tbody>
+                @for(tag <- tags){
+
+                <tr>
+                    <td><a href="@routes.TagsController.show(tag.id)">@tag.name</a></td>
+                    <td>@tag.description</td>
+                    <td><button class="btn btn-danger" >Apagar</button></td>
+                </tr>
+                }
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-sm-4">
+
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Cadastrar grupo</h4>
+                    </div>
+                    <div class="card-body">
+                        @helper.form(action = routes.TagsController.save()){
+                        @CSRF.formField
+                        <div class="form-floating">
+                            <input type="name" class="form-control" id="floatingInput" name="name">
+                            <label for="floatingInput">Nome do grupo (Ex.: Família, amigos, futebol...)</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="description" class="form-control" id="floatingInput" name="description">
+                            <label for="floatingInput">Descrição</label>
+                        </div>
+                        <br>
+                        <button class="btn btn-secondary" class="w-100 btn btn-lg btn-outline-primary" type="submit">Salvar</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+}
