@@ -38,4 +38,4 @@ Antes de instalar as dependencias crie uma tabela no bando de dados MySQL com o 
 
 Para quem não está habituado com o desenvolvimento de aplicações Java, saiba que você precisa configurar suas variáveis de ambiente. Em Path adicione o caminho da pasta bin do java (ex: C:\Program Files\Java\jdk1.8.0_301\bin). Crie JAVA_HOME e adicione o caminho do java (ex: C:\Program Files\Java\jdk1.8.0_202).
 
-Existe uma grande chance de conflitos com versões posteriores do Java, evite dificuldades usando a versão 1.8.
+Existe uma grande chance de conflitos com versões posteriores do Java, evite dificuldades utilizando a versão 1.8.
