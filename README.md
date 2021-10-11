@@ -4,7 +4,7 @@ Essa agenda foi desenvolvida com play framework 2.6 com hibernate JPA e MySQL. U
 
 #Funcionalidades
 - Sistema de Login (apenas usuário logados podem inserir contatos)
-- Inserir, editar e apagar contatos na agenda (foto, nome, telefone, idade, dataNascimento, email)
+- Inserir, editar e apagar contatos na agenda (foto, nome, telefone, idade, data de nascimento, email)
 - Criar grupos (Ex: Amigos, familiáres, Futebol, Condomínio)
 - Lista contatos e grupos registrados
 
